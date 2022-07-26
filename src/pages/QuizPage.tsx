@@ -1,7 +1,12 @@
 import React from 'react'
+import { QuizIntroduction } from 'components'
 
-function quizPage() {
-  return <h1>퀴즈 시작 페이지입니다.</h1>
+function QuizPage() {
+  return (
+    <>
+      <QuizIntroduction />
+    </>
+  )
 }
 
-export default quizPage
+export default QuizPage
