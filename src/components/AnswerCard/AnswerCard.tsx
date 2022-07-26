@@ -1,21 +1,19 @@
 import React from 'react'
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-  FormControlLabel,
-  Checkbox,
-} from '@mui/material'
+import { Card, CardActions, CardContent, Typography, FormControlLabel, Radio } from '@mui/material'
 
-function AnswerCard() {
+interface AnswerCardProps {
+  answer: string
+}
+
+function AnswerCard({ answer }: AnswerCardProps) {
   return (
     <Card>
       <CardContent>
         <CardActions>
           <FormControlLabel
-            control={<Checkbox />}
-            label={<Typography color='text.secondary'>Word of the Day</Typography>}
+            value={answer}
+            control={<Radio />}
+            label={<Typography color='text.secondary'>{answer}</Typography>}
           />
         </CardActions>
       </CardContent>
