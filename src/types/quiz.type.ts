@@ -1,4 +1,4 @@
-export interface Answers {
+export interface AnswerInfo {
   category: string
   type: string
   difficulty: string

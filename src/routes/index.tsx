@@ -21,7 +21,7 @@ function index() {
     <Router>
       <Routes>
         <Route path={PATH_NAME['quiz']} element={<QuizPage />} />
-        <Route path={PATH_NAME['question']} element={<QuizQuestionPage />} />
+        <Route path={`${PATH_NAME['question']}/:id`} element={<QuizQuestionPage />} />
         <Route path={PATH_NAME['result']} element={<QuizResultPage />} />
       </Routes>
     </Router>

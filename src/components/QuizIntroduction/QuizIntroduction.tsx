@@ -24,7 +24,7 @@ function QuizIntroduction() {
       <Button
         variant='contained'
         size='large'
-        onClick={() => handlePageMove(PATH_NAME['question'])}
+        onClick={() => handlePageMove(`${PATH_NAME['question']}/1`)}
       >
         퀴즈 풀기
       </Button>

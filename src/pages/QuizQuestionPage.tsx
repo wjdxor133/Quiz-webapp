@@ -1,25 +1,24 @@
 import React from 'react'
-import { AnswerCardList } from 'components'
+import { useParams } from 'react-router-dom'
+
+import { useRecoilValueLoadable } from 'recoil'
+import { questionInfoState } from 'states/quiz.state'
+
+import { Question } from 'components'
+
+import { MAX_NUMBER } from 'utils/quiz'
 
 function QuizQuestionPage() {
-  const answerInfo = {
-    category: 'Entertainment: Video Games',
-    type: 'multiple',
-    difficulty: 'easy',
-    question:
-      'Which popular First Person Shooter (FPS) franchise, got a Real Time Strategy (RTS) game developed based on its universe?',
-    correct_answer: 'Halo',
-    incorrect_answers: ['Battlefield', 'Call of Duty', 'Borderlands'],
-  }
+  const { id: questionNum } = useParams()
 
-  const { correct_answer: correctAnswer, incorrect_answers: incorrectAnswers } = answerInfo
-
-  const answers = [correctAnswer, ...incorrectAnswers].sort(() => Math.random() - 0.5)
+  const { state, contents } = useRecoilValueLoadable(questionInfoState(MAX_NUMBER))
+  const answers = contents?.data?.results
 
   return (
     <>
       <h1>퀴즈 문항 페이지입니다.</h1>
-      <AnswerCardList answers={answers} />
+      {state === 'loading' && <div>로딩 중...</div>}
+      {state === 'hasValue' && <Question answer={answers[Number(questionNum) - 1]} />}
     </>
   )
 }
