@@ -1,6 +1,6 @@
 import { atom, atomFamily } from 'recoil'
 import { getQuizInfo } from 'apis/quiz.api'
-import { SelectedAnswerInfo } from 'types/quiz.type'
+import { AllSelectedAnswerInfo } from 'types/quiz.type'
 
 export const questionNumberState = atom<number>({
   key: 'questionNumberState',
@@ -14,8 +14,8 @@ export const questionInfoState = atomFamily({
   },
 })
 
-export const selectedAnswerState = atom<SelectedAnswerInfo>({
-  key: 'selectedAnswerState',
+export const allSelectedAnswerState = atom<AllSelectedAnswerInfo>({
+  key: 'allSelectedAnswerState',
   default: {
     correct: [],
     incorrect: [],
