@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { FormControl, RadioGroup, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
@@ -17,7 +18,7 @@ const RadioGroupWrapper = styled(RadioGroup)(
 
 function AnswerCardList({ answer }: AnswerCardListProps) {
   const { question, correct_answer: correctAnswer, incorrect_answers: incorrectAnswers } = answer
-  const answers = [correctAnswer, ...incorrectAnswers]
+  const contents = [correctAnswer, ...incorrectAnswers]
 
   return (
     <FormControl fullWidth>
@@ -25,8 +26,8 @@ function AnswerCardList({ answer }: AnswerCardListProps) {
         {`Q. ${question}`}
       </Typography>
       <RadioGroupWrapper>
-        {answers.map((answer, idx) => {
-          return <AnswerCard key={idx} answer={answer} />
+        {contents.map((content, idx) => {
+          return <AnswerCard key={idx} answer={answer} content={content} />
         })}
       </RadioGroupWrapper>
     </FormControl>

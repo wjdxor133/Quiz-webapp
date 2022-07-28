@@ -6,3 +6,8 @@ export interface AnswerInfo {
   correct_answer: string
   incorrect_answers: string[]
 }
+
+export interface SelectedAnswerInfo {
+  correct: AnswerInfo[]
+  incorrect: AnswerInfo[]
+}
