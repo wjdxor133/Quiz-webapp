@@ -7,6 +7,11 @@ export const quizNumberState = atom<number>({
   default: 1,
 })
 
+export const consumedTimeState = atom<number>({
+  key: 'consumedTimeState',
+  default: 0,
+})
+
 export const questionInfoState = atomFamily({
   key: 'questionInfoState',
   default: async (number: number) => {
