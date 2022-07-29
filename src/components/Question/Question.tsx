@@ -4,7 +4,7 @@ import { FormControl, RadioGroup, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { useRecoilValue } from 'recoil'
-import { questionNumberState } from 'states/quiz.state'
+import { quizNumberState } from 'states/quiz.state'
 
 import { AnswerCard } from 'components'
 
@@ -22,16 +22,13 @@ const RadioGroupWrapper = styled(RadioGroup)(
 )
 
 function AnswerCardList({ answer }: AnswerCardListProps) {
-  const questionNumber = useRecoilValue(questionNumberState)
+  const quizNumber = useRecoilValue(quizNumberState)
   const { question, correct_answer: correctAnswer, incorrect_answers: incorrectAnswers } = answer
   const contents = [correctAnswer, ...incorrectAnswers]
 
   return (
     <FormControl fullWidth>
-      <Typography
-        variant='subtitle2'
-        align='right'
-      >{`${questionNumber} / ${MAX_NUMBER}`}</Typography>
+      <Typography variant='subtitle2' align='right'>{`${quizNumber} / ${MAX_NUMBER}`}</Typography>
       <Typography component='h6' variant='h6' mb={1}>
         {`Q. ${question}`}
       </Typography>
