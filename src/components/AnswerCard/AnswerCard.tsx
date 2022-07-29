@@ -16,8 +16,11 @@ import {
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 import { useRecoilState } from 'recoil'
-import { quizNumberState, allSelectedAnswerState } from 'states/quiz.state'
+import { quizNumberState, allSelectedAnswerState, consumedTimeState } from 'states/quiz.state'
 
+import usePageMove from 'hooks/usePageMove'
+
+import { PATH_NAME } from 'routes'
 import { AnswerInfo } from 'types/quiz.type'
 import { MAX_NUMBER } from 'utils/quiz'
 
@@ -31,6 +34,8 @@ function AnswerCard({ answer, content }: AnswerCardProps) {
   const [allSelectedAnswer, setAllSelectedAnswer] = useRecoilState(allSelectedAnswerState)
   const [open, setOpen] = useState(false)
   const [quizNum, setQuizNum] = useRecoilState(quizNumberState)
+  const [consumedTime, setConsumedTime] = useRecoilState(consumedTimeState)
+  const { handlePageMove } = usePageMove()
 
   const handleSelectedAnswer = () => {
     if (correctAnswer === content) {
@@ -57,6 +62,13 @@ function AnswerCard({ answer, content }: AnswerCardProps) {
   const handleNextAnswer = () => {
     setQuizNum((prev) => prev + 1)
     handleClose()
+  }
+
+  const handleCheckResult = () => {
+    const endTime = Date.now()
+
+    setConsumedTime(endTime - consumedTime)
+    handlePageMove(`${PATH_NAME['result']}`)
   }
 
   return (
@@ -87,7 +99,7 @@ function AnswerCard({ answer, content }: AnswerCardProps) {
                 다음 문항
               </Button>
             ) : (
-              <Button variant='contained' size='large'>
+              <Button variant='contained' size='large' onClick={handleCheckResult}>
                 결과 확인
               </Button>
             )}
