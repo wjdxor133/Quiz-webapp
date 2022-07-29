@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Typography, Button, Stack } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
@@ -24,7 +25,7 @@ function QuizIntroduction() {
       <Button
         variant='contained'
         size='large'
-        onClick={() => handlePageMove(PATH_NAME['question'])}
+        onClick={() => handlePageMove(`${PATH_NAME['question']}`)}
       >
         퀴즈 풀기
       </Button>
