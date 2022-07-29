@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Typography, Button, Stack } from '@mui/material'
+import { Typography, Button, Stack, Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
 
 import { useRecoilValue, useResetRecoilState } from 'recoil'
@@ -12,6 +13,13 @@ import { getSeconds, getMinutes } from 'utils/time'
 import { PATH_NAME } from 'routes'
 
 import { QuizChart } from 'components'
+
+const RootPage = styled(Box)(
+  ({ theme }) => `
+  width: 100%;
+  row-gap: ${theme.spacing(2)};
+`,
+)
 
 function QuizResultPage() {
   const consumedTime = useRecoilValue(consumedTimeState)
@@ -30,8 +38,8 @@ function QuizResultPage() {
   }
 
   return (
-    <>
-      <Typography component='h4' variant='h4' pb={1}>
+    <RootPage>
+      <Typography component='h4' variant='h4'>
         오늘의 퀴즈 결과!
       </Typography>
       <Typography
@@ -43,7 +51,7 @@ function QuizResultPage() {
       }`}</Typography>
       <QuizChart />
 
-      <Stack direction='column' rowGap={1} mt={1}>
+      <Stack direction='column' rowGap={1}>
         <Button variant='contained' size='large'>
           오답노트 보러가기
         </Button>
@@ -51,7 +59,7 @@ function QuizResultPage() {
           다시 하기
         </Button>
       </Stack>
-    </>
+    </RootPage>
   )
 }
 

@@ -1,5 +1,7 @@
 import Chart from 'react-apexcharts'
 
+import { Box } from '@mui/material'
+
 import { useRecoilValue } from 'recoil'
 import { allSelectedAnswerState } from 'states/quiz.state'
 
@@ -30,9 +32,9 @@ function QuizChart() {
   const { options, series } = state
 
   return (
-    <>
-      <Chart options={options} series={series} type='bar' width='500' />
-    </>
+    <Box>
+      <Chart options={options} series={series} type='bar' width='100%' />
+    </Box>
   )
 }
 

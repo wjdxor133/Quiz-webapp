@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormControl, RadioGroup, Typography } from '@mui/material'
+import { FormControl, RadioGroup, Typography, Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { useRecoilValue } from 'recoil'
@@ -27,7 +27,7 @@ function AnswerCardList({ answer }: AnswerCardListProps) {
   const contents = [correctAnswer, ...incorrectAnswers]
 
   return (
-    <FormControl fullWidth>
+    <FormControl component={Box} fullWidth>
       <Typography variant='subtitle2' align='right'>{`${quizNumber} / ${MAX_NUMBER}`}</Typography>
       <Typography component='h6' variant='h6' mb={1}>
         {`Q. ${question}`}
