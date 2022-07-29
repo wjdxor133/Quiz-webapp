@@ -18,9 +18,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useRecoilState } from 'recoil'
 import { quizNumberState, allSelectedAnswerState, consumedTimeState } from 'states/quiz.state'
 
+import usePageMove from 'hooks/usePageMove'
+
+import { PATH_NAME } from 'routes'
 import { AnswerInfo } from 'types/quiz.type'
 import { MAX_NUMBER } from 'utils/quiz'
-import { getSeconds } from 'utils/time'
 
 interface AnswerCardProps {
   answer: AnswerInfo
@@ -33,6 +35,7 @@ function AnswerCard({ answer, content }: AnswerCardProps) {
   const [open, setOpen] = useState(false)
   const [quizNum, setQuizNum] = useRecoilState(quizNumberState)
   const [consumedTime, setConsumedTime] = useRecoilState(consumedTimeState)
+  const { handlePageMove } = usePageMove()
 
   const handleSelectedAnswer = () => {
     if (correctAnswer === content) {
@@ -65,6 +68,7 @@ function AnswerCard({ answer, content }: AnswerCardProps) {
     const endTime = Date.now()
 
     setConsumedTime(endTime - consumedTime)
+    handlePageMove(`${PATH_NAME['result']}`)
   }
 
   return (
@@ -84,7 +88,6 @@ function AnswerCard({ answer, content }: AnswerCardProps) {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>{`정답은 ${correctAnswer}입니다.`}</DialogContentText>
-              <DialogContentText>{`소요 시간: ${getSeconds(consumedTime)}초`}</DialogContentText>
             </DialogContent>
             {MAX_NUMBER !== quizNum ? (
               <Button
