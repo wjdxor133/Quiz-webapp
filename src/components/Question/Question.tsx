@@ -24,7 +24,7 @@ const RadioGroupWrapper = styled(RadioGroup)(
 function AnswerCardList({ answer }: AnswerCardListProps) {
   const quizNumber = useRecoilValue(quizNumberState)
   const { question, correct_answer: correctAnswer, incorrect_answers: incorrectAnswers } = answer
-  const contents = [correctAnswer, ...incorrectAnswers]
+  const contents = [correctAnswer, ...incorrectAnswers].sort(() => Math.random() - 0.5)
 
   return (
     <FormControl component={Box} fullWidth>
@@ -34,7 +34,7 @@ function AnswerCardList({ answer }: AnswerCardListProps) {
       </Typography>
       <RadioGroupWrapper>
         {contents.map((content, idx) => {
-          return <AnswerCard key={idx} answer={answer} content={content} />
+          return <AnswerCard key={idx} answer={answer} contents={contents} content={content} />
         })}
       </RadioGroupWrapper>
     </FormControl>

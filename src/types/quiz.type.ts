@@ -7,7 +7,12 @@ export interface AnswerInfo {
   incorrect_answers: string[]
 }
 
+export interface SelectedAnswerInfo extends AnswerInfo {
+  selectedAnswer: string
+  allAnswers: string[]
+}
+
 export interface AllSelectedAnswerInfo {
-  correct: AnswerInfo[]
-  incorrect: AnswerInfo[]
+  correctAnswers: SelectedAnswerInfo[]
+  incorrectAnswers: SelectedAnswerInfo[]
 }

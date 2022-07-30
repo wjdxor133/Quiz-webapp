@@ -52,7 +52,11 @@ function QuizResultPage() {
       <QuizChart />
 
       <Stack direction='column' rowGap={1}>
-        <Button variant='contained' size='large'>
+        <Button
+          variant='contained'
+          size='large'
+          onClick={() => handlePageMove(`${PATH_NAME['wrong']}`)}
+        >
           오답노트 보러가기
         </Button>
         <Button variant='text' size='large' startIcon={<RestartAltIcon />} onClick={handleReset}>

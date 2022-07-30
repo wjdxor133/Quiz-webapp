@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil'
 import { allSelectedAnswerState } from 'states/quiz.state'
 
 function QuizChart() {
-  const { correct, incorrect } = useRecoilValue(allSelectedAnswerState)
+  const { correctAnswers, incorrectAnswers } = useRecoilValue(allSelectedAnswerState)
   const theme = useTheme()
 
   const state = {
@@ -22,12 +22,12 @@ function QuizChart() {
     series: [
       {
         name: '정답 개수',
-        data: [correct.length],
+        data: [correctAnswers.length],
         color: theme.palette.primary.light,
       },
       {
         name: '오답 개수',
-        data: [incorrect.length],
+        data: [incorrectAnswers.length],
         color: theme.palette.error.light,
       },
     ],
