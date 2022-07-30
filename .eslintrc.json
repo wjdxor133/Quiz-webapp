@@ -23,7 +23,7 @@
     "react/react-in-jsx-scope": "off",
     // "camelcase": "error",
     "spaced-comment": "error",
-    "quotes": ["error", "single"],
+    "quotes": ["error", "single", { "avoidEscape": true }],
     "no-duplicate-imports": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": [
