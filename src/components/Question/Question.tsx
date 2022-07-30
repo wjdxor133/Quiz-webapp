@@ -28,7 +28,11 @@ function AnswerCardList({ answer }: AnswerCardListProps) {
 
   return (
     <FormControl component={Box} fullWidth>
-      <Typography variant='subtitle2' align='right'>{`${quizNumber} / ${MAX_NUMBER}`}</Typography>
+      <Typography
+        variant='subtitle2'
+        align='right'
+        color={(theme) => theme.palette.grey[800]}
+      >{`${quizNumber} / ${MAX_NUMBER}`}</Typography>
       <Typography component='h6' variant='h6' mb={1}>
         {`Q. ${question}`}
       </Typography>

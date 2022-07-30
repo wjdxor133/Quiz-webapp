@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { useRecoilValueLoadable, useRecoilValue } from 'recoil'
@@ -25,7 +25,7 @@ function QuizQuestionPage() {
 
   return (
     <RootPage>
-      {state === 'loading' && <div>로딩 중...</div>}
+      {state === 'loading' && <CircularProgress />}
       {state === 'hasValue' && <Question answer={answers[quizNum - 1]} />}
     </RootPage>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Typography, Button, Stack, Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
@@ -29,6 +29,18 @@ function QuizResultPage() {
   const handleResetConsumedTime = useResetRecoilState(consumedTimeState)
   const handleResetAllSelectedAnswer = useResetRecoilState(allSelectedAnswerState)
   const { handlePageMove } = usePageMove()
+
+  const handlePreventGoBack = () => {
+    history.pushState(null, '', location.href)
+  }
+
+  useEffect(() => {
+    history.pushState(null, '', location.href)
+    window.addEventListener('popstate', handlePreventGoBack)
+    return () => {
+      window.removeEventListener('popstate', handlePreventGoBack)
+    }
+  }, [])
 
   const handleReset = () => {
     handleResetQuizNum()
