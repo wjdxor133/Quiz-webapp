@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react'
+
+import { ThemeProvider } from '@mui/material/styles'
+
+import { RecoilRoot } from 'recoil'
+
+import Routes from 'routes'
+import { AppLayout } from 'layouts'
+import { theme } from 'styles/theme'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <AppLayout>
+          <Routes />
+        </AppLayout>
+      </ThemeProvider>
+    </RecoilRoot>
+  )
 }
 
-export default App;
+export default App

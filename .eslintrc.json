@@ -21,10 +21,17 @@
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "camelcase": "error",
+    // "camelcase": "error",
     "spaced-comment": "error",
-    "quotes": ["error", "single"],
-    "no-duplicate-imports": "error"
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "no-duplicate-imports": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "additionalHooks": "(useRecoilCallback|useRecoilTransaction_UNSTABLE)"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
