@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormControl, RadioGroup, Typography } from '@mui/material'
+import { FormControl, RadioGroup, Typography, Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { useRecoilValue } from 'recoil'
@@ -24,17 +24,17 @@ const RadioGroupWrapper = styled(RadioGroup)(
 function AnswerCardList({ answer }: AnswerCardListProps) {
   const quizNumber = useRecoilValue(quizNumberState)
   const { question, correct_answer: correctAnswer, incorrect_answers: incorrectAnswers } = answer
-  const contents = [correctAnswer, ...incorrectAnswers]
+  const contents = [correctAnswer, ...incorrectAnswers].sort(() => Math.random() - 0.5)
 
   return (
-    <FormControl fullWidth>
+    <FormControl component={Box} fullWidth>
       <Typography variant='subtitle2' align='right'>{`${quizNumber} / ${MAX_NUMBER}`}</Typography>
       <Typography component='h6' variant='h6' mb={1}>
         {`Q. ${question}`}
       </Typography>
       <RadioGroupWrapper>
         {contents.map((content, idx) => {
-          return <AnswerCard key={idx} answer={answer} content={content} />
+          return <AnswerCard key={idx} answer={answer} contents={contents} content={content} />
         })}
       </RadioGroupWrapper>
     </FormControl>

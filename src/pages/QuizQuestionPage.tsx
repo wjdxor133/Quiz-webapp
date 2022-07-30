@@ -1,11 +1,21 @@
 import React from 'react'
 
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
+
 import { useRecoilValueLoadable, useRecoilValue } from 'recoil'
 import { questionInfoState, quizNumberState } from 'states/quiz.state'
 
 import { Question } from 'components'
 
 import { MAX_NUMBER } from 'utils/quiz'
+
+const RootPage = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 function QuizQuestionPage() {
   const quizNum = useRecoilValue(quizNumberState)
@@ -14,10 +24,10 @@ function QuizQuestionPage() {
   const answers = contents?.data?.results
 
   return (
-    <>
+    <RootPage>
       {state === 'loading' && <div>로딩 중...</div>}
       {state === 'hasValue' && <Question answer={answers[quizNum - 1]} />}
-    </>
+    </RootPage>
   )
 }
 

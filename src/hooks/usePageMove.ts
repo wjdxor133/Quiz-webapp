@@ -7,7 +7,11 @@ function usePageMove() {
     navigate(`${path}`)
   }
 
-  return { handlePageMove }
+  const handleGoBack = () => {
+    navigate(-1)
+  }
+
+  return { handlePageMove, handleGoBack }
 }
 
 export default usePageMove

@@ -22,7 +22,7 @@ export const questionInfoState = atomFamily({
 export const allSelectedAnswerState = atom<AllSelectedAnswerInfo>({
   key: 'allSelectedAnswerState',
   default: {
-    correct: [],
-    incorrect: [],
+    correctAnswers: [],
+    incorrectAnswers: [],
   },
 })
