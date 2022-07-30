@@ -23,7 +23,7 @@ function QuizIntroduction() {
   return (
     <FormControl component={Stack} fullWidth rowGap={3}>
       <Typography variant='h4' component='h4' align='center'>
-        퀴즈를 풀어볼까요??
+        📝 퀴즈를 풀어볼까요??
       </Typography>
       <Button variant='contained' size='large' onClick={handleQuizStart}>
         퀴즈 풀기

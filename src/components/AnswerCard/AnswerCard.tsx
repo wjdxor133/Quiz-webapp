@@ -72,8 +72,8 @@ function AnswerCard({ answer, contents, content }: AnswerCardProps) {
   }
 
   const handleNextAnswer = () => {
-    setQuizNum((prev) => prev + 1)
     handleClose()
+    setQuizNum((prev) => prev + 1)
   }
 
   const handleCheckResult = () => {
