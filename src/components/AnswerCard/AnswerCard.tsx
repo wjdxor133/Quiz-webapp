@@ -12,6 +12,7 @@ import {
   Dialog,
   DialogContent,
   DialogContentText,
+  Box,
 } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
@@ -73,14 +74,17 @@ function AnswerCard({ answer, contents, content }: AnswerCardProps) {
 
   const handleNextAnswer = () => {
     handleClose()
+    setSelectedValue('')
     setQuizNum((prev) => prev + 1)
   }
 
   useEffect(() => {
     if (selectedValue === correctAnswer) {
       setMessage('🎉 정답입니다!')
-    } else {
-      setMessage('❌ 오답입니다!')
+    }
+
+    if (selectedValue && selectedValue !== correctAnswer) {
+      setMessage('💩 오답입니다!')
     }
   }, [selectedValue, correctAnswer])
 
@@ -103,25 +107,28 @@ function AnswerCard({ answer, contents, content }: AnswerCardProps) {
               onClick={handleClickOpen}
             />
             <Dialog open={open} fullWidth maxWidth='xs'>
-              <DialogContent>
-                <DialogContentText variant='h6' align='center'>
+              <Box component={DialogContent} p={4}>
+                <DialogContentText variant='h5' align='center'>
                   {message}
                 </DialogContentText>
-              </DialogContent>
-              {MAX_NUMBER !== quizNum ? (
-                <Button
-                  variant='contained'
-                  size='large'
-                  endIcon={<ArrowForwardIcon />}
-                  onClick={handleNextAnswer}
-                >
-                  다음 문항
-                </Button>
-              ) : (
-                <Button variant='contained' size='large' onClick={handleCheckResult}>
-                  결과 확인
-                </Button>
-              )}
+              </Box>
+              <Box p={2} pt={0}>
+                {MAX_NUMBER > quizNum ? (
+                  <Button
+                    fullWidth
+                    variant='contained'
+                    size='large'
+                    endIcon={<ArrowForwardIcon />}
+                    onClick={handleNextAnswer}
+                  >
+                    다음 문항
+                  </Button>
+                ) : (
+                  <Button fullWidth variant='contained' size='large' onClick={handleCheckResult}>
+                    결과 확인
+                  </Button>
+                )}
+              </Box>
             </Dialog>
           </RadioGroup>
         </CardActions>

@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 
 import { SelectedAnswerInfo } from 'types/quiz.type'
+import { getUnescapeHtml } from 'utils/character'
 
 interface WrongAnswerProps {
   incorrectAnswer: SelectedAnswerInfo
@@ -21,7 +22,7 @@ function WrongAnswer({ incorrectAnswer }: WrongAnswerProps) {
 
   return (
     <FormControl component={Stack} rowGap={1}>
-      <Typography>{`Q. ${question}`}</Typography>
+      <Typography>{`Q. ${getUnescapeHtml(question)}`}</Typography>
       <RadioGroup defaultValue={selectedAnswer}>
         {allAnswers.map((content, idx) => {
           return (

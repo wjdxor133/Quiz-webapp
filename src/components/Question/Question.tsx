@@ -10,6 +10,7 @@ import { AnswerCard } from 'components'
 
 import { AnswerInfo } from 'types/quiz.type'
 import { MAX_NUMBER } from 'utils/quiz'
+import { getUnescapeHtml } from 'utils/character'
 
 interface AnswerCardListProps {
   answer: AnswerInfo
@@ -34,7 +35,7 @@ function AnswerCardList({ answer }: AnswerCardListProps) {
         color={(theme) => theme.palette.grey[800]}
       >{`${quizNumber} / ${MAX_NUMBER}`}</Typography>
       <Typography component='h6' variant='h6' mb={1}>
-        {`Q. ${question}`}
+        {`Q. ${getUnescapeHtml(question)}`}
       </Typography>
       <RadioGroupWrapper>
         {contents.map((content, idx) => {
