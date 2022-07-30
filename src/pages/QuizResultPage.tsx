@@ -46,7 +46,7 @@ function QuizResultPage() {
         component='h6'
         variant='h6'
         color={(theme) => theme.palette.grey[700]}
-      >{`소요 시간: ${
+      >{`⏱ 소요 시간: ${
         60000 > consumedTime ? `${seconds}초` : `${minutes}분 ${seconds}초`
       }`}</Typography>
       <QuizChart />
