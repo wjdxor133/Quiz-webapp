@@ -1,16 +1,21 @@
 import React from 'react'
 
+import { ThemeProvider } from '@mui/material/styles'
+
 import { RecoilRoot } from 'recoil'
 
 import Routes from 'routes'
 import { AppLayout } from 'layouts'
+import { theme } from 'styles/theme'
 
 function App() {
   return (
     <RecoilRoot>
-      <AppLayout>
-        <Routes />
-      </AppLayout>
+      <ThemeProvider theme={theme}>
+        <AppLayout>
+          <Routes />
+        </AppLayout>
+      </ThemeProvider>
     </RecoilRoot>
   )
 }
