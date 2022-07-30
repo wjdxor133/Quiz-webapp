@@ -11,7 +11,6 @@ import {
   Button,
   Dialog,
   DialogContent,
-  DialogTitle,
   DialogContentText,
 } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
@@ -83,7 +82,7 @@ function AnswerCard({ answer, contents, content }: AnswerCardProps) {
     } else {
       setMessage('❌ 오답입니다!')
     }
-  }, [selectedValue])
+  }, [selectedValue, correctAnswer])
 
   const handleCheckResult = () => {
     const endTime = Date.now()
