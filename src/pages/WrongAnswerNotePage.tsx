@@ -34,7 +34,7 @@ function WrongAnswerNotePage() {
       {incorrectAnswers.map((incorrectAnswer, idx) => {
         return <WrongAnswer key={idx} incorrectAnswer={incorrectAnswer} />
       })}
-      <Box component={Button} pb={2}>
+      <Box pb={2}>
         <Button
           fullWidth
           variant='contained'

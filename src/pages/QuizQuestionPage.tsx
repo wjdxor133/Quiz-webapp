@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Box, CircularProgress } from '@mui/material'
 import { styled } from '@mui/material/styles'
@@ -22,6 +22,34 @@ function QuizQuestionPage() {
   const { state, contents } = useRecoilValueLoadable(questionInfoState(MAX_NUMBER))
 
   const answers = contents?.data?.results
+
+  // 뒤로가기 막기
+  const handlePreventGoBack = () => {
+    history.pushState(null, '', location.href)
+  }
+
+  useEffect(() => {
+    history.pushState(null, '', location.href)
+    window.addEventListener('popstate', handlePreventGoBack)
+    return () => {
+      window.removeEventListener('popstate', handlePreventGoBack)
+    }
+  }, [])
+
+  // 새로고침 알림 메시지
+  const preventClose = (event: BeforeUnloadEvent) => {
+    event.preventDefault()
+    event.returnValue = ''
+  }
+
+  useEffect(() => {
+    ;(() => {
+      window.addEventListener('beforeunload', preventClose)
+    })()
+    return () => {
+      window.removeEventListener('beforeunload', preventClose)
+    }
+  }, [])
 
   return (
     <RootPage>
