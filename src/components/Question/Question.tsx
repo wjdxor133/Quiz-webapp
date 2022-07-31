@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { motion } from 'framer-motion'
+
 import { FormControl, RadioGroup, Typography, Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
@@ -39,7 +41,19 @@ function AnswerCardList({ answer }: AnswerCardListProps) {
       </Typography>
       <RadioGroupWrapper>
         {contents.map((content, idx) => {
-          return <AnswerCard key={idx} answer={answer} contents={contents} content={content} />
+          return (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100, transition: { delay: 0.5, ease: 'easeIn' } }}
+              transition={{
+                duration: 0.25,
+              }}
+            >
+              <AnswerCard answer={answer} contents={contents} content={content} />
+            </motion.div>
+          )
         })}
       </RadioGroupWrapper>
     </FormControl>
