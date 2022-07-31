@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+
+import { AnimatePresence } from 'framer-motion'
 
 import { Box, CircularProgress } from '@mui/material'
 import { styled } from '@mui/material/styles'
@@ -18,6 +20,8 @@ const RootPage = styled(Box)`
 `
 
 function QuizQuestionPage() {
+  const [startAnimate, setStartAnimate] = useState(false)
+
   const quizNum = useRecoilValue(quizNumberState)
   const { state, contents } = useRecoilValueLoadable(questionInfoState(MAX_NUMBER))
 
@@ -51,10 +55,24 @@ function QuizQuestionPage() {
     }
   }, [])
 
+  useEffect(() => {
+    setStartAnimate(false)
+
+    const timer = setTimeout(() => {
+      setStartAnimate(true)
+    }, 10)
+
+    return () => clearTimeout(timer)
+  }, [quizNum])
+
   return (
     <RootPage>
       {state === 'loading' && <CircularProgress />}
-      {state === 'hasValue' && <Question answer={answers[quizNum - 1]} />}
+      {state === 'hasValue' && startAnimate && (
+        <AnimatePresence>
+          <Question answer={answers[quizNum - 1]} />
+        </AnimatePresence>
+      )}
     </RootPage>
   )
 }
