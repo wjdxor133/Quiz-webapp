@@ -19,8 +19,8 @@ const RootPage = styled(Box)`
 
 function QuizQuestionPage() {
   const quizNum = useRecoilValue(quizNumberState)
-
   const { state, contents } = useRecoilValueLoadable(questionInfoState(MAX_NUMBER))
+
   const answers = contents?.data?.results
 
   return (
