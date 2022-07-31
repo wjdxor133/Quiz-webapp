@@ -24,6 +24,7 @@ import usePageMove from 'hooks/usePageMove'
 import { PATH_NAME } from 'routes'
 import { AnswerInfo } from 'types/quiz.type'
 import { MAX_NUMBER } from 'utils/quiz'
+import { getUnescapeHtml } from 'utils/character'
 
 interface AnswerCardProps {
   answer: AnswerInfo
@@ -105,7 +106,7 @@ function AnswerCard({ answer, contents, content }: AnswerCardProps) {
             <FormControlLabel
               value={content}
               control={<Radio />}
-              label={<Typography color='text.secondary'>{content}</Typography>}
+              label={<Typography color='text.secondary'>{getUnescapeHtml(content)}</Typography>}
               onClick={handleClickOpen}
             />
             <Dialog open={open} fullWidth maxWidth='xs'>

@@ -30,7 +30,7 @@ function WrongAnswer({ incorrectAnswer }: WrongAnswerProps) {
               key={idx}
               value={content}
               control={<Radio />}
-              label={content}
+              label={getUnescapeHtml(content)}
               disabled
             />
           )
@@ -43,7 +43,7 @@ function WrongAnswer({ incorrectAnswer }: WrongAnswerProps) {
         <Typography
           variant='subtitle2'
           color={(theme) => theme.palette.grey[600]}
-        >{`정답은 ${correctAnswer}입니다.`}</Typography>
+        >{`정답은 ${getUnescapeHtml(correctAnswer)}입니다.`}</Typography>
       </Box>
     </FormControl>
   )
