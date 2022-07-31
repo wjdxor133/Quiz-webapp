@@ -4,8 +4,10 @@ import { recoilPersist } from 'recoil-persist'
 import { getQuizInfo } from 'apis/quiz.api'
 import { AllSelectedAnswerInfo } from 'types/quiz.type'
 
+export const localStorageState = 'recoil-persist'
+
 const { persistAtom } = recoilPersist({
-  key: 'recoil-persist',
+  key: `${localStorageState}`,
   storage: localStorage,
 })
 

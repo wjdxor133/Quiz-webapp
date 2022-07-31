@@ -4,10 +4,11 @@ import { Typography, Button, Stack, Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
 
-import { useRecoilValue, useResetRecoilState } from 'recoil'
-import { quizNumberState, consumedTimeState, allSelectedAnswerState } from 'states/quiz.state'
+import { useRecoilValue } from 'recoil'
+import { consumedTimeState } from 'states/quiz.state'
 
 import usePageMove from 'hooks/usePageMove'
+import useQuizReset from 'hooks/useQuizReset'
 
 import { getSeconds, getMinutes } from 'utils/time'
 import { PATH_NAME } from 'routes'
@@ -25,10 +26,9 @@ function QuizResultPage() {
   const consumedTime = useRecoilValue(consumedTimeState)
   const seconds = getSeconds(consumedTime)
   const minutes = getMinutes(consumedTime)
-  const handleResetQuizNum = useResetRecoilState(quizNumberState)
-  const handleResetConsumedTime = useResetRecoilState(consumedTimeState)
-  const handleResetAllSelectedAnswer = useResetRecoilState(allSelectedAnswerState)
+
   const { handlePageMove } = usePageMove()
+  const { handleQuizReset } = useQuizReset()
 
   const handlePreventGoBack = () => {
     history.pushState(null, '', location.href)
@@ -43,9 +43,7 @@ function QuizResultPage() {
   }, [])
 
   const handleReset = () => {
-    handleResetQuizNum()
-    handleResetConsumedTime()
-    handleResetAllSelectedAnswer()
+    handleQuizReset()
     handlePageMove(PATH_NAME['quiz'])
   }
 
@@ -73,7 +71,7 @@ function QuizResultPage() {
           오답노트 보러가기
         </Button>
         <Button variant='text' size='large' startIcon={<RestartAltIcon />} onClick={handleReset}>
-          다시 하기
+          다시 풀기
         </Button>
       </Stack>
     </RootPage>

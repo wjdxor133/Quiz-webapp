@@ -32,14 +32,16 @@ interface AnswerCardProps {
 }
 
 function AnswerCard({ answer, contents, content }: AnswerCardProps) {
-  const { correct_answer: correctAnswer } = answer
-  const [allSelectedAnswer, setAllSelectedAnswer] = useRecoilState(allSelectedAnswerState)
   const [open, setOpen] = useState(false)
   const [selectedValue, setSelectedValue] = useState('')
   const [message, setMessage] = useState('')
+
+  const [allSelectedAnswer, setAllSelectedAnswer] = useRecoilState(allSelectedAnswerState)
   const [quizNum, setQuizNum] = useRecoilState(quizNumberState)
   const [consumedTime, setConsumedTime] = useRecoilState(consumedTimeState)
   const { handlePageMove } = usePageMove()
+
+  const { correct_answer: correctAnswer } = answer
 
   const handleSelectedAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selected = (event.target as HTMLInputElement).value

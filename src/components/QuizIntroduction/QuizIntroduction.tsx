@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Typography, Button, Stack, FormControl } from '@mui/material'
 
 import { useSetRecoilState } from 'recoil'
-import { consumedTimeState } from 'states/quiz.state'
+import { localStorageState, consumedTimeState } from 'states/quiz.state'
 
 import usePageMove from 'hooks/usePageMove'
+import useQuizReset from 'hooks/useQuizReset'
 
 import { PATH_NAME } from 'routes'
 
 function QuizIntroduction() {
-  const { handlePageMove } = usePageMove()
   const setConsumedTime = useSetRecoilState(consumedTimeState)
+
+  const { handlePageMove } = usePageMove()
+  const { handleQuizReset } = useQuizReset()
+
+  useEffect(() => {
+    if (localStorage.getItem(localStorageState)) {
+      handleQuizReset()
+    }
+  }, [handleQuizReset])
 
   const handleQuizStart = () => {
     const startTime = Date.now()
